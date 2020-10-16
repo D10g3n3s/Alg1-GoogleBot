@@ -4,7 +4,7 @@ INCLUDES = ./includes
 BINARY = ./main
 PROG = sources/main.c
 FLAGS = -Wall -Werror -g -lm -std=c99
-PROG_NAME = Googlebot - Parte 1
+PROG_NAME = Googlebot
 VFLAGS = --leak-check=full --track-origins=yes --show-leak-kinds=all
 
 all:
