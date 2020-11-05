@@ -26,34 +26,33 @@ void CSV(LINKED_LIST *list){
 
     FILE *fp = fopen(archive, "r");
 
-    if (fp == NULL){
+    if (fp == NULL)
         csvFail();
-        deleteList(list);
-        free(archive);
-        fclose(fp);
-        exit(1);
-    }
+    
+    else {
+        csvSucess();
 
-    csvSucess();
+        while(!feof(fp)){
+            char *data;
+            data = readLine(fp);
 
-    while(!feof(fp)){
-        char *data;
-        data = readLine(fp);
+            if (strcmp(data, "") != 0) {
+                bool exists = checkExistence(list, data);
+                
+                if (!exists)
+                    insertList(list, createSite(data));
 
-        if (strcmp(data, "") != 0) {
-            bool exists = checkExistence(list, data);
-            
-            if (!exists)
-                insertList(list, createSite(data));
+                else 
+                    alredyExists();
+            }
 
-            else 
-                alredyExists();
+            free(data);
         }
-
-        free(data);
+        
+        fclose(fp);
     }
+
     free(archive);
-    fclose(fp);
 }
 
 void manual(LINKED_LIST *list){
