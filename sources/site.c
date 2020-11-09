@@ -17,6 +17,7 @@ struct _site{
     WORDS *keyWords;
 };
 
+// Function that creates a wordlist
 WORDS* createWordList(){
     WORDS *list = malloc (sizeof(WORDS));
     list->words = NULL;
@@ -25,6 +26,7 @@ WORDS* createWordList(){
     return list;
 }
 
+// Function that particionates a string and saves it to the word list
 bool getPartFromStr(char *sourceStr, int *sourcePos, char **destStr, char delimiter) {
     *destStr = NULL;
     bool is_end_of_part = FALSE;
@@ -55,6 +57,7 @@ bool getPartFromStr(char *sourceStr, int *sourcePos, char **destStr, char delimi
     return FALSE;
 }
 
+// Function that parcionates a given string into its delimiters and save in a char** wordlist
 WORDS *splitList(char *string, char delimiter){
     WORDS *splitList = createWordList();
 
