@@ -29,7 +29,7 @@ WORDS* createWordList(){
 // Function that particionates a string and saves it to the word list
 bool getPartFromStr(char *sourceStr, int *sourcePos, char **destStr, char delimiter) {
     *destStr = NULL;
-    bool is_end_of_part = FALSE;
+    bool isEndOfPart = FALSE;
 
     char c;
     int dest_pos = 0;
@@ -43,7 +43,7 @@ bool getPartFromStr(char *sourceStr, int *sourcePos, char **destStr, char delimi
         }
 
         else if (c == delimiter) {
-            is_end_of_part = TRUE;
+            isEndOfPart = TRUE;
             c = '\0';
         }
 
@@ -52,7 +52,7 @@ bool getPartFromStr(char *sourceStr, int *sourcePos, char **destStr, char delimi
 
         (*sourcePos)++;
         dest_pos++;
-    } while (!is_end_of_part);
+    } while (!isEndOfPart);
 
     return FALSE;
 }
