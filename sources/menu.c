@@ -87,7 +87,7 @@ void menuInsert(LINKED_LIST *list){
     if (option == INSERT_CSV)
         CSV(list);
 
-    else if (option == INSERT_DATA)
+    else if (option == INSERT_MANUAL)
         manual(list);
 
     else 

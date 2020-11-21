@@ -109,6 +109,8 @@ SITE* searchList(LINKED_LIST *list, int code){
         while (data != NULL){
             if (siteGetCode(data->site) == code)
                 return data->site;
+            if (siteGetCode(data->site) > code)
+                break;
             data = data->next;
         }
     }
