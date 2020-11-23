@@ -124,7 +124,7 @@ void addKeyWord(LINKED_LIST *list){
     free(string);
 
     if (exists) {
-        printf("  Digita a nova palavra: ");
+        printf("  Digite a nova palavra: ");
         char *newWord = readWord(stdin);
         siteSetKeyWord(searchList(list, code), newWord);
         free(newWord);
@@ -144,7 +144,7 @@ void updateRel(LINKED_LIST *list){
     free(string);
 
     if (exists) {
-        printf("  Digita a nova relevância: ");
+        printf("  Digite a nova relevância: ");
         char *newWord = readLine(stdin);
         int newRelevance = atoi(newWord);
         siteSetRelevance(searchList(list, code), newRelevance);
