@@ -186,7 +186,7 @@ void menu(LINKED_LIST *list){
             isOver = TRUE;
         
         else 
-            printf("Insira um valor válido por favor\n");
+            invalidValue();
 
     } while(!isOver);
 }
