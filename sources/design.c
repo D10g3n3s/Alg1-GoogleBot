@@ -118,8 +118,7 @@ void removeFail(){
 void howNewKey(){
     printf("+------------------------------------------------+\n");
     printf("+             INSERIR PALAVRA-CHAVE:             +\n");
-    printf("+  Nova palavra chave somente a primeira palavra +\n");
-    printf("+  escrita será levada em conta:                 +\n");
+    printf("+  Nova palavra chave:                           +\n");
     printf("+------------------------------------------------+\n");
     printf("  Digite o código do site: ");
 }

@@ -102,9 +102,8 @@ bool insertList(LINKED_LIST *list, SITE *site){
 
 //Function that searchs for a site in the list based in a code
 SITE* searchList(LINKED_LIST *list, int code){
-    NODE *data;
-
     if (list != NULL){
+        NODE *data;
         data = list->head;
         while (data != NULL){
             if (siteGetCode(data->site) == code)

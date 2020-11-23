@@ -18,6 +18,37 @@ enum {
     INSERT_MANUAL
 };
 
+void AutoLoadCSV(LINKED_LIST *list){
+    char *archive = "./googlebot.txt";
+    FILE *fp = fopen(archive, "r");
+
+    if (fp == NULL)
+        csvFail();
+    
+    else {
+        csvSucess();
+
+        while(!feof(fp)){
+            char *data;
+            data = readLine(fp);
+
+            if (strcmp(data, "") != 0) {
+                bool exists = checkExistence(list, data);
+                
+                if (!exists)
+                    insertList(list, createSite(data));
+
+                else 
+                    alredyExists();
+            }
+
+            free(data);
+        }
+        
+        fclose(fp);
+    }
+}
+
 void CSV(LINKED_LIST *list){
     insertCSV();
 
@@ -125,7 +156,7 @@ void addKeyWord(LINKED_LIST *list){
 
     if (exists) {
         printf("  Digite a nova palavra: ");
-        char *newWord = readWord(stdin);
+        char *newWord = readLine(stdin);
         siteSetKeyWord(searchList(list, code), newWord);
         free(newWord);
     }
@@ -160,7 +191,10 @@ void menu(LINKED_LIST *list){
 
     printHello();
 
+    AutoLoadCSV(list);
+
     do {
+
         printOpc();
 
         opc = readLine(stdin);
