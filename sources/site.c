@@ -236,5 +236,6 @@ bool siteSetKeyWord(SITE *site, char *string){
     site->keyWords->words = realloc(site->keyWords->words, site->keyWords->amount * sizeof(char*));
     site->keyWords->words[site->keyWords->amount - 1] = newWord;
     newKeySucess();
+    
     return TRUE;
 }
