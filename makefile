@@ -1,7 +1,7 @@
 CC = gcc
 SOURCES = sources/list.c sources/site.c sources/utils.c sources/design.c sources/menu.c
 INCLUDES = ./includes
-DOC = ./GooglebotDoc.pdf
+DOC = ./GooglebotDoc.pdf ./googlebot.txt
 BINARY = ./main
 PROG = sources/main.c
 FLAGS = -Wall -Werror -g -lm -std=c99
