@@ -94,7 +94,7 @@ SITE* createSite(char *string){
 
         int wordCount = 0;
         for (int i = 4; i < csvList->amount; i++){
-            if (wordCount <= 10){
+            if (wordCount < 10){
                 site->keyWords->words = realloc(site->keyWords->words, (wordCount + 1) * sizeof(char*));
                 site->keyWords->words[wordCount] = csvList->words[i];
                 wordCount++;
