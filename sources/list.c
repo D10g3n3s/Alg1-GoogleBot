@@ -123,7 +123,7 @@ bool removeSite(LINKED_LIST *list, int code){
         NODE *prev = NULL;
         NODE *next = list->head;
 
-        while (next != NULL && siteGetCode(next->site) != code){
+        while (next != NULL && siteGetCode(next->site) < code){
             prev = next;
             next = next->next;
         }
