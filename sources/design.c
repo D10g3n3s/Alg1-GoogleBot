@@ -61,7 +61,7 @@ void insertManual(){
     printf("+  codigo, nome, relvância, link, palavras-chave +\n");
     printf("+                                                +\n");
     printf("+  Ex com valores:                               +\n");
-    printf("+  0001,YTB,900,https://...,video,musica         +\n");
+    printf("+  0001,YTB,0900,https://...,video,musica        +\n");
     printf("+------------------------------------------------+\n");
 }
 
