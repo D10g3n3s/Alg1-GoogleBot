@@ -84,9 +84,16 @@ SITE* createSite(char *string){
     if (site != NULL){
         site->code = atoi(csvList->words[0]);
         free(csvList->words[0]);
+        
         site->name = csvList->words[1];
+        
         site->revelance = atoi(csvList->words[2]);
+        if (site->revelance > 1000)
+            site->revelance = 1000;
+        else if (site->revelance < 0)
+            site->revelance = 0;
         free(csvList->words[2]);
+
         site->link = csvList->words[3];
 
         site->keyWords = (WORDS*) malloc(sizeof(WORDS));
