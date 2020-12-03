@@ -42,15 +42,7 @@ void AutoLoadCSV(LINKED_LIST *list, AVL *tree){
                 //     alredyExists();
 
                 // Inserting into the AVL
-                bool exists2 = checkAVLExistence(tree, data);
-
-                if (!exists2){
-                    bool in = insertAVL(tree, createSite(data));
-                    if (in == TRUE ? printf("Entramos\n") : printf("Não entramos\n"));
-                }
-
-                else
-                    alredyExists();
+                insertAVL(tree, createSite(data));
             }
 
             free(data);
@@ -97,16 +89,18 @@ void CSV(LINKED_LIST *list){
     free(archive);
 }
 
-void manual(LINKED_LIST *list){
+void manual(LINKED_LIST *list, AVL *tree){
     insertManual();
 
     char *data;
     data = readLine(stdin);
 
-    bool exists = checkExistence(list, data);
+    // bool exists = checkExistence(list, data);
+    bool exists = checkAVLExistence(tree, data);
 
     if (!exists){
-        bool inserted = insertList(list, createSite(data));
+        // bool inserted = insertList(list, createSite(data));
+        bool inserted = insertAVL(tree, createSite(data));
         if(inserted)
             manualSucess();
         else
@@ -119,7 +113,7 @@ void manual(LINKED_LIST *list){
 }
 
 //Submenu function for insert data
-void menuInsert(LINKED_LIST *list){
+void menuInsert(LINKED_LIST *list, AVL *tree){
     howInsert();
 
     char *opc = readLine(stdin);
@@ -130,7 +124,7 @@ void menuInsert(LINKED_LIST *list){
         CSV(list);
 
     else if (option == INSERT_MANUAL)
-        manual(list);
+        manual(list, tree);
 
     else 
         invalidValue();
@@ -213,7 +207,7 @@ void menu(LINKED_LIST *list, AVL *tree){
         free(opc);
 
         if(operation == INSERT_DATA)
-            menuInsert(list);            
+            menuInsert(list, tree);            
         
         else if(operation == REMOVE_DATA)
             removeData(list);

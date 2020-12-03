@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <avl.h>
+#include <design.h>
 
 struct _node{
     // Site of the node
@@ -228,6 +229,8 @@ NODE* insertNode(NODE *node, SITE *site, int *flag){
                 }
             }
         }
+        else
+            alredyExists();
     }
     else {
         node = createNode(site);
