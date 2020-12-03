@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <menu.h>
 #include <design.h>
+#include <menuavl.h>
 
 enum {
     INSERT_DATA = 1,
     REMOVE_DATA,
     NEW_KEYWORD,
     UPDATE_RELEVANCE,
-    PRINT_LIST,
+    PRINT_TREE,
     EXIT
 };
 
@@ -18,7 +18,7 @@ enum {
     INSERT_MANUAL
 };
 
-void AutoLoadCSV(LINKED_LIST *list, AVL *tree){
+void avlAutoLoadCSV(AVL *tree){
     char *archive = "./googlebot.txt";
     FILE *fp = fopen(archive, "r");
 
@@ -33,16 +33,13 @@ void AutoLoadCSV(LINKED_LIST *list, AVL *tree){
             data = readLine(fp);
 
             if (strcmp(data, "") != 0) {
-                // bool exists = checkExistence(list, data);
+                bool exists = checkAVLExistence(tree, data);
                 
-                // if (!exists)
-                //     insertList(list, createSite(data));
+                if (!exists)
+                    insertAVL(tree, createSite(data));
 
-                // else 
-                //     alredyExists();
-
-                // Inserting into the AVL
-                insertAVL(tree, createSite(data));
+                else 
+                    alredyExists();
             }
 
             free(data);
@@ -52,7 +49,7 @@ void AutoLoadCSV(LINKED_LIST *list, AVL *tree){
     }
 }
 
-void CSV(LINKED_LIST *list){
+void avlCSV(AVL *tree){
     insertCSV();
 
     char *archive;
@@ -71,10 +68,10 @@ void CSV(LINKED_LIST *list){
             data = readLine(fp);
 
             if (strcmp(data, "") != 0) {
-                bool exists = checkExistence(list, data);
+                bool exists = checkAVLExistence(tree, data);
                 
                 if (!exists)
-                    insertList(list, createSite(data));
+                    insertAVL(tree, createSite(data));
 
                 else 
                     alredyExists();
@@ -89,18 +86,17 @@ void CSV(LINKED_LIST *list){
     free(archive);
 }
 
-void manual(LINKED_LIST *list, AVL *tree){
+void avlManual(AVL *tree){
     insertManual();
 
     char *data;
     data = readLine(stdin);
 
-    // bool exists = checkExistence(list, data);
     bool exists = checkAVLExistence(tree, data);
 
     if (!exists){
-        // bool inserted = insertList(list, createSite(data));
         bool inserted = insertAVL(tree, createSite(data));
+
         if(inserted)
             manualSucess();
         else
@@ -112,8 +108,7 @@ void manual(LINKED_LIST *list, AVL *tree){
     free(data);
 }
 
-//Submenu function for insert data
-void menuInsert(LINKED_LIST *list, AVL *tree){
+void avlMenuInsert(AVL *tree){
     howInsert();
 
     char *opc = readLine(stdin);
@@ -121,27 +116,26 @@ void menuInsert(LINKED_LIST *list, AVL *tree){
     free(opc);
 
     if (option == INSERT_CSV)
-        CSV(list);
+        avlCSV(tree);
 
     else if (option == INSERT_MANUAL)
-        manual(list, tree);
+        avlManual(tree);
 
     else 
         invalidValue();
-
 }
 
-//Function that remove a site of the list
-void removeData(LINKED_LIST *list){
+void avlRemoveData(AVL *tree){
     howRemove();
 
     char *string = readLine(stdin);
-    bool exists = checkExistence(list, string);
+    bool exists = checkAVLExistence(tree, string);
     int code = atoi(string);
     free(string);
 
     if (exists){
-        bool removed = removeSite(list, code);
+        bool removed = deleteNodeAVL(tree, code);
+
         if (removed)
             siteRemoved();
         else
@@ -151,31 +145,29 @@ void removeData(LINKED_LIST *list){
         nonExiste();
 }
 
-void addKeyWord(LINKED_LIST *list){
+void avlAddKeyWord(AVL *tree){
     howNewKey();
 
     char *string = readLine(stdin);
-    bool exists = checkExistence(list, string);
+    bool exists = checkAVLExistence(tree, string);
     int code = atoi(string);
     free(string);
 
     if (exists) {
         printf("  Digite a nova palavra: ");
         char *newWord = readLine(stdin);
-        siteSetKeyWord(searchList(list, code), newWord);
+        siteSetKeyWord(searchTree(tree, code), newWord);
         free(newWord);
     }
     else
         nonExiste();
-
 }
 
-//Functoin that set new relevance
-void updateRel(LINKED_LIST *list){
+void avlUpdateRel(AVL *tree){
     howRelevance();
 
     char *string = readLine(stdin);
-    bool exists = checkExistence(list, string);
+    bool exists = checkAVLExistence(tree, string);
     int code = atoi(string);
     free(string);
 
@@ -183,23 +175,22 @@ void updateRel(LINKED_LIST *list){
         printf("  Digite a nova relevância: ");
         char *newWord = readLine(stdin);
         int newRelevance = atoi(newWord);
-        siteSetRelevance(searchList(list, code), newRelevance);
+        siteSetRelevance(searchTree(tree, code), newRelevance);
         free(newWord);
     }
     else
         nonExiste();
 }
 
-void menu(LINKED_LIST *list, AVL *tree){
+void menuAVL(AVL *tree){
     bool isOver = FALSE;
     char *opc = NULL;
 
     printHello();
 
-    AutoLoadCSV(list, tree);
+    avlAutoLoadCSV(tree);
 
     do {
-
         printOpc();
 
         opc = readLine(stdin);
@@ -207,21 +198,19 @@ void menu(LINKED_LIST *list, AVL *tree){
         free(opc);
 
         if(operation == INSERT_DATA)
-            menuInsert(list, tree);            
+            avlMenuInsert(tree);            
         
         else if(operation == REMOVE_DATA)
-            removeData(list);
+            avlRemoveData(tree);
 
         else if(operation == NEW_KEYWORD)
-            addKeyWord(list);
+            avlAddKeyWord(tree);
 
         else if(operation == UPDATE_RELEVANCE) 
-            updateRel(list);
+            avlUpdateRel(tree);
 
-        else if(operation == PRINT_LIST){
-            printList(list);
+        else if(operation == PRINT_TREE)
             printInfixOrder(tree);
-        }
 
         else if(operation == EXIT)
             isOver = TRUE;

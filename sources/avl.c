@@ -259,7 +259,7 @@ SITE* search(NODE *node, int code){
     else if (siteGetCode(node->site) == code)
         return node->site;
     // Going deeper into the left side of the tree
-    else if (siteGetCode(node->left->site) > code)
+    else if (siteGetCode(node->site) > code)
         return search(node->left, code);
     // Going deeper into the right side of the tree
     else
