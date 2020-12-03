@@ -1,8 +1,8 @@
 #ifndef LINKEDLIST_H
     #define LINKEDLIST_H
 
-    #include "site.h"
-    #include "utils.h"
+    #include <site.h>
+    #include <utils.h>
 
     typedef struct _linkedList LINKED_LIST;
 

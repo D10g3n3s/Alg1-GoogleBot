@@ -19,6 +19,6 @@
     bool insertAVL(AVL *tree, SITE *site);
     SITE* searchTree(AVL *tree, int code);
     bool deleteNodeAVL(AVL *tree, int code);
-    bool checkExistence(AVL *tree, char *string);
+    bool checkAVLExistence(AVL *tree, char *string);
 
 #endif

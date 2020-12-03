@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "list.h"
+#include <list.h>
 
 typedef struct _node NODE;
 
@@ -193,15 +193,15 @@ bool deleteList(LINKED_LIST *list){
 //Function that checks if a code from given data alredy exists in the list
 bool checkExistence(LINKED_LIST *list, char *string){
     //Discovering the code of given data
-    char *checkExistance = myStrndump(string, 4);
-    int code = atoi(checkExistance);
-    free(checkExistance);
+    char *exists = myStrndump(string, 4);
+    int code = atoi(exists);
+    free(exists);
 
     //Trying to find the site in the list, if found code alredy existes
-    SITE* siteExiste = NULL;
-    siteExiste = searchList(list, code);
+    SITE* siteExists = NULL;
+    siteExists = searchList(list, code);
 
-    if (siteExiste == NULL)
+    if (siteExists == NULL)
         return FALSE;
     else 
         return TRUE;

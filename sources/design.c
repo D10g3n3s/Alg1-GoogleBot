@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "design.h"
+#include <design.h>
 
 void printHello(){
     printf("+------------------------------------------------+\n");

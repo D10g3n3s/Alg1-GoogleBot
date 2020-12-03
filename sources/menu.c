@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "menu.h"
-#include "design.h"
+#include <menu.h>
+#include <design.h>
 
 enum {
     INSERT_DATA = 1,
@@ -18,7 +18,7 @@ enum {
     INSERT_MANUAL
 };
 
-void AutoLoadCSV(LINKED_LIST *list){
+void AutoLoadCSV(LINKED_LIST *list, AVL *tree){
     char *archive = "./googlebot.txt";
     FILE *fp = fopen(archive, "r");
 
@@ -33,12 +33,23 @@ void AutoLoadCSV(LINKED_LIST *list){
             data = readLine(fp);
 
             if (strcmp(data, "") != 0) {
-                bool exists = checkExistence(list, data);
+                // bool exists = checkExistence(list, data);
                 
-                if (!exists)
-                    insertList(list, createSite(data));
+                // if (!exists)
+                //     insertList(list, createSite(data));
 
-                else 
+                // else 
+                //     alredyExists();
+
+                // Inserting into the AVL
+                bool exists2 = checkAVLExistence(tree, data);
+
+                if (!exists2){
+                    bool in = insertAVL(tree, createSite(data));
+                    if (in == TRUE ? printf("Entramos\n") : printf("Não entramos\n"));
+                }
+
+                else
                     alredyExists();
             }
 
@@ -185,13 +196,13 @@ void updateRel(LINKED_LIST *list){
         nonExiste();
 }
 
-void menu(LINKED_LIST *list){
+void menu(LINKED_LIST *list, AVL *tree){
     bool isOver = FALSE;
     char *opc = NULL;
 
     printHello();
 
-    AutoLoadCSV(list);
+    AutoLoadCSV(list, tree);
 
     do {
 
@@ -213,8 +224,10 @@ void menu(LINKED_LIST *list){
         else if(operation == UPDATE_RELEVANCE) 
             updateRel(list);
 
-        else if(operation == PRINT_LIST)
+        else if(operation == PRINT_LIST){
             printList(list);
+            printInfixOrder(tree);
+        }
 
         else if(operation == EXIT)
             isOver = TRUE;

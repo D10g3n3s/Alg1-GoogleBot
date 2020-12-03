@@ -88,6 +88,20 @@ int treeHeight(AVL *tree){
     return 0;
 }
 
+// Auxiliar function that creates a node with given site
+NODE *createNode(SITE *site){
+    NODE *newnode = malloc(sizeof(NODE));
+
+    if (newnode != NULL){
+        newnode->site = site;
+        newnode->bf = 0;
+        newnode->left = NULL;
+        newnode->right = NULL;
+    }
+
+    return newnode;
+}
+
 // Auxiliar function that does a simple right rotation
 NODE* rotationRight(NODE *node){
     NODE *aux = node->left;
@@ -216,7 +230,7 @@ NODE* insertNode(NODE *node, SITE *site, int *flag){
         }
     }
     else {
-        node->site = site;
+        node = createNode(site);
         *flag = 1;
     }
 
@@ -255,6 +269,21 @@ SITE* searchTree(AVL *tree, int code){
         return search(tree->root, code);
 
     return NULL;    
+}
+
+bool checkAVLExistence(AVL *tree, char *string){
+    // Discovering the code of given data
+    char *exists = myStrndump(string, 4);
+    int code = atoi(exists);
+    free(exists);
+
+    SITE* siteExists = NULL;
+    siteExists = searchTree(tree, code);
+
+    if (siteExists == NULL)
+        return FALSE;
+    else
+        return TRUE;
 }
 
 // Function that does the balance to the left of a tree after some node being removed

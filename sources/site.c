@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "site.h"
-#include "design.h"
+#include <site.h>
+#include <design.h>
 
 struct _words{
     char **words;
