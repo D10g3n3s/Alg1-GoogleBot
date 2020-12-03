@@ -140,7 +140,7 @@ void printSite(SITE *site){
         printf("+  Link: %s\n", site->link);
         printf("+  KeyWords:                                     \n");
         for (int i = 0; i < site->keyWords->amount; i++)
-            printf("+  [%d]: %s\n", i, site->keyWords->words[i]);
+            printf("+  [%d]: %s\n", i+1, site->keyWords->words[i]);
     }
 }
 
