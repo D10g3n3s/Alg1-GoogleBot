@@ -2,8 +2,8 @@
 Projeto para a matéria SCC0202 - Algoritmos e Estruturas de Dados 1
 
 ## Autores
-- Diógenes Silva Pedro - nUSP 11883476
-- Alexandre Lima Palles Rocha - nUSP 11797038
+- [Diógenes Silva Pedro](github.com/D10g3n3s) - nUSP 11883476
+- [Alexandre Lima Palles Rocha](https://github.com/Alexandre-Palles) - nUSP 11797038
 
 ## Compilador
 Foi utilizado o padrão C99 para o projeto, além do compilador GCC (Gnu C Compiler)
