@@ -1,5 +1,5 @@
 CC = gcc
-SOURCES = sources/list.c sources/site.c sources/utils.c sources/design.c sources/menu.c
+SOURCES = sources/list.c sources/site.c sources/utils.c sources/design.c sources/menu.c sources/avl.c
 INCLUDES = ./includes
 DOC = ./GooglebotDoc.pdf ./googlebot.txt
 BINARY = ./main
