@@ -103,7 +103,7 @@ void avlManual(AVL *tree){
             manualFail();
     }
     else 
-        invalidValue();
+        alredyExists();
 
     free(data);
 }
@@ -122,7 +122,7 @@ void avlMenuInsert(AVL *tree){
         avlManual(tree);
 
     else 
-        invalidValue();
+        alredyExists();
 }
 
 void avlRemoveData(AVL *tree){
@@ -216,7 +216,7 @@ void menuAVL(AVL *tree){
             isOver = TRUE;
         
         else 
-            invalidValue();
+            alredyExists();
 
     } while(!isOver);
 }

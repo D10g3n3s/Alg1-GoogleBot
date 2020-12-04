@@ -79,19 +79,13 @@ void manualFail(){
 
 void alredyExists(){
     printf("+------------------------------------------------+\n");
-    printf("+  Código já existe na lista                     +\n");
-    printf("+------------------------------------------------+\n");
-}
-
-void invalidValue(){
-    printf("+------------------------------------------------+\n");
-    printf("+  Digite um valor válido                        +\n");
+    printf("+  Código já existente nos sites registrados     +\n");
     printf("+------------------------------------------------+\n");
 }
 
 void nonExiste(){
     printf("+------------------------------------------------+\n");
-    printf("+  Código não existe na lista                    +\n");
+    printf("+  Código não existe nos sites registrados       +\n");
     printf("+------------------------------------------------+\n");
 }
 

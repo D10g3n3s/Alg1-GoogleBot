@@ -103,7 +103,7 @@ void manual(LINKED_LIST *list){
             manualFail();
     }
     else 
-        invalidValue();
+        alredyExists();
 
     free(data);
 }
@@ -123,7 +123,7 @@ void menuInsert(LINKED_LIST *list){
         manual(list);
 
     else 
-        invalidValue();
+        alredyExists();
 
 }
 
@@ -220,7 +220,7 @@ void menuList(LINKED_LIST *list){
             isOver = TRUE;
         
         else 
-            invalidValue();
+            alredyExists();
 
     } while(!isOver);
 }

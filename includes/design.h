@@ -11,7 +11,6 @@
     void manualSucess();
     void manualFail();
     void alredyExists();
-    void invalidValue();
     void nonExiste();
     void howRemove();
     void siteRemoved();
