@@ -38,18 +38,18 @@ bool isEmpty(AVL *tree){
 }
 
 // Auxiliar function to infix order print
-void infixAux(NODE *node){
+void inOrder(NODE *node){
     if (node != NULL){
-        infixAux(node->left);
+        inOrder(node->left);
         printSite(node->site);
-        infixAux(node->right);
+        inOrder(node->right);
     }
 }
 
 // Function that prints the tree in infix order
-void printInfixOrder(AVL *tree){
+void printInOrder(AVL *tree){
     if (tree != NULL)
-        infixAux(tree->root);
+        inOrder(tree->root);
 }
 
 // Auxiliar function to the count the number of nodes from a tree

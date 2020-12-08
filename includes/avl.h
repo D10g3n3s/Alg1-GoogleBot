@@ -10,9 +10,7 @@
     AVL *createAVL();
     bool isEmpty(AVL *tree);
     void printStaticAVL(AVL *tree);
-    void printInfixOrder(AVL *tree);
-    void printPostfixOrder(AVL *tree);
-    void printPrefixOrder(AVL *tree);
+    void printInOrder(AVL *tree);
     int countNumNodes(AVL *tree);
     int treeHeight(AVL *tree);
     bool deleteAVL(AVL *tree);
