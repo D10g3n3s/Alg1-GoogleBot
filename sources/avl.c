@@ -251,7 +251,7 @@ bool insertAVL(AVL* tree, SITE *site){
     return FALSE;
 }
 
-// Auxiliar functoin to search for a node into the tree
+// Auxiliar function to search for a node into the tree
 SITE* search(NODE *node, int code){
     if (node == NULL)
         return NULL;

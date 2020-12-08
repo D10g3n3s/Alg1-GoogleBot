@@ -198,24 +198,24 @@ void menuAVL(AVL *tree){
         free(opc);
 
         if(operation == INSERT_DATA)
-            avlMenuInsert(tree);            
-        
+            avlMenuInsert(tree);
+                                
         else if(operation == REMOVE_DATA)
             avlRemoveData(tree);
 
         else if(operation == NEW_KEYWORD)
             avlAddKeyWord(tree);
 
-        else if(operation == UPDATE_RELEVANCE) 
+        else if(operation == UPDATE_RELEVANCE)
             avlUpdateRel(tree);
 
         else if(operation == PRINT_TREE)
             printInfixOrder(tree);
 
         else if(operation == EXIT)
-            break;
+            isOver = TRUE;
         
-        else 
+        else
             alredyExists();
 
     } while(!isOver);
