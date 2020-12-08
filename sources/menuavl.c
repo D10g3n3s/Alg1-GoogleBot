@@ -213,7 +213,7 @@ void menuAVL(AVL *tree){
             printInfixOrder(tree);
 
         else if(operation == EXIT)
-            isOver = TRUE;
+            break;
         
         else 
             alredyExists();
