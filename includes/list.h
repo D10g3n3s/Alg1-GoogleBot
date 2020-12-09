@@ -10,10 +10,10 @@
     int listLength(LINKED_LIST *list);
     bool emptyList(LINKED_LIST *list);
     bool insertList(LINKED_LIST *list, SITE *site);
-    SITE* searchList(LINKED_LIST *list, int code);
-    bool removeSite(LINKED_LIST *list, int code);
+    SITE* listGetSite(LINKED_LIST *list, int amountLoop);
     void printList(LINKED_LIST *list);
+    void printMostRelevant(LINKED_LIST *list);
     bool deleteList(LINKED_LIST *list);
-    bool checkExistence(LINKED_LIST *list, char* string);
+    bool checkExistence(LINKED_LIST *list, char *name);
 
 #endif

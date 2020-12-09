@@ -17,7 +17,7 @@ struct _site{
     WORDS *keyWords;
 };
 
-// Function that creates a wordlist
+//  Function that creates a wordlist
 WORDS* createWordList(){
     WORDS *list = malloc (sizeof(WORDS));
     list->words = NULL;
@@ -26,7 +26,7 @@ WORDS* createWordList(){
     return list;
 }
 
-// Function that particionates a string and saves it to the word list
+//  Function that particionates a string and saves it to the word list
 bool getPartFromStr(char *sourceStr, int *sourcePos, char **destStr, char delimiter) {
     *destStr = NULL;
     bool isEndOfPart = FALSE;
@@ -57,7 +57,7 @@ bool getPartFromStr(char *sourceStr, int *sourcePos, char **destStr, char delimi
     return FALSE;
 }
 
-// Function that parcionates a given string into its delimiters and save in a char** wordlist
+//  Function that parcionates a given string into its delimiters and save in a char** wordlist
 WORDS *splitList(char *string, char delimiter){
     WORDS *splitList = createWordList();
 
@@ -76,7 +76,7 @@ WORDS *splitList(char *string, char delimiter){
     return splitList;
 }
 
-//Functions that creates a site
+// Functions that creates a site
 SITE* createSite(char *string){
     WORDS *csvList = splitList(string, ',');
 
@@ -120,7 +120,7 @@ SITE* createSite(char *string){
     return site;
 }
 
-//Function that deletes a site
+// Function that deletes a site
 bool deleteSite(SITE *site){
     if (site == NULL)
         return FALSE;
@@ -137,10 +137,10 @@ bool deleteSite(SITE *site){
     return TRUE;
 }
 
-//Function that prints the informations of a site
+// Function that prints the informations of a site
 void printSite(SITE *site){
     if (site != NULL){
-        printf("\n++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+        printf("++++++++++++++++++++++++++++++++++++++++++++++++++\n");
         printf("+  Código: %d\n", site->code);
         printf("+  Nome: %s\n", site->name);
         printf("+  Relevância %d\n", site->revelance);
@@ -151,7 +151,16 @@ void printSite(SITE *site){
     }
 }
 
-//Função that gets a code from a site
+// Function that prints the site that is related to a keyWord
+void printRelatedSite(SITE *site){
+    if (site != NULL){
+        printf("++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+        printf("+  Nome: %s\n", site->name);
+        printf("+  Link: %s\n", site->link);
+    }
+}
+
+// Função that gets a code from a site
 int siteGetCode(SITE *site){
     if (site != NULL)
         return site->code;
@@ -160,7 +169,7 @@ int siteGetCode(SITE *site){
     return ERROR;
 }
 
-//Function that gets the name of a site
+// Function that gets the name of a site
 char* siteGetName(SITE *site){
     if (site != NULL)
         return site->name;
@@ -169,7 +178,7 @@ char* siteGetName(SITE *site){
     return NULL;
 }
 
-//Function that gets the revelance of a site
+// Function that gets the revelance of a site
 int siteGetRevelance(SITE *site){
     if (site != NULL)
         return site->revelance;
@@ -177,7 +186,7 @@ int siteGetRevelance(SITE *site){
     return ERROR;
 }
 
-//Function that returns the link of a site
+// Function that returns the link of a site
 char* siteGetLink(SITE *site){
     if (site != NULL)
         return site->link;
@@ -186,7 +195,7 @@ char* siteGetLink(SITE *site){
     return NULL;
 }
 
-//Function that gets the keywords of a site
+// Function that gets the keywords of a site
 char** siteGetKeyWords(SITE *site){
     if (site != NULL)
         return site->keyWords->words;
@@ -195,7 +204,7 @@ char** siteGetKeyWords(SITE *site){
     return NULL;
 }
 
-//Function that gets the amount of keywords of a site
+// Function that gets the amount of keywords of a site
 int siteGetAmountKeyWords(SITE *site){
     if (site != NULL)
         return site->keyWords->amount;
@@ -204,7 +213,7 @@ int siteGetAmountKeyWords(SITE *site){
     return ERROR;
 }
 
-//Function that sets new relevance to a site
+// Function that sets new relevance to a site
 bool siteSetRelevance(SITE *site, int relevance){
     if (site == NULL)
         return FALSE;
@@ -224,7 +233,7 @@ bool siteSetRelevance(SITE *site, int relevance){
     return TRUE;
 }
 
-//Function that sets new keyword to a site
+// Function that sets new keyword to a site
 bool siteSetKeyWord(SITE *site, char *string){
     if (site == NULL || string == NULL){
         newKeyFail();

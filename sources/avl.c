@@ -20,7 +20,7 @@ struct _avl{
 };
 
 // Function that creates a new AVL tree
-AVL *createAVL(){
+AVL* createAVL(){
     AVL *tree = malloc(sizeof(AVL));
 
     if (tree != NULL)
@@ -37,7 +37,7 @@ bool isEmpty(AVL *tree){
     return FALSE;
 }
 
-// Auxiliar function to infix order print
+// Auxiliar function to inOrder print
 void inOrder(NODE *node){
     if (node != NULL){
         inOrder(node->left);
@@ -46,7 +46,7 @@ void inOrder(NODE *node){
     }
 }
 
-// Function that prints the tree in infix order
+// Function that prints the tree in inOrder
 void printInOrder(AVL *tree){
     if (tree != NULL)
         inOrder(tree->root);
@@ -90,7 +90,7 @@ int treeHeight(AVL *tree){
 }
 
 // Auxiliar function that creates a node with given site
-NODE *createNode(SITE *site){
+NODE* createNode(SITE *site){
     NODE *newnode = malloc(sizeof(NODE));
 
     if (newnode != NULL){
@@ -144,7 +144,7 @@ NODE* insertNode(NODE *node, SITE *site, int *flag){
         if (siteGetCode(node->site) > siteGetCode(site)){
             node->left = insertNode(node->left, site, flag);
             if (*flag == 1){
-                switch(node->bf){
+                switch (node->bf){
                     case -1:
                         node->bf = 0;
                         *flag = 0;
@@ -188,7 +188,7 @@ NODE* insertNode(NODE *node, SITE *site, int *flag){
         else if (siteGetCode(node->site) < siteGetCode(site)){
             node->right = insertNode(node->right, site, flag);
             if (*flag == 1){
-                switch(node->bf){
+                switch (node->bf){
                     case 1:
                         node->bf = 0;
                         *flag = 0;
@@ -515,9 +515,11 @@ void searchKeyWord(LINKED_LIST *list, NODE *node, char *keyWord){
     for (int i = 0; i < amount; i++){
         // If the keyword in found in the site keyword list than adding the node to the list
         if (strcmp(keyWord, wordList[i]) == 0){
-            insertList(list, node->site);
-            // Stoping the execution cause if the word is alredy found there's no need to keep searching
-            break;
+            if (!checkExistence(list, siteGetName(node->site))){
+                insertList(list, node->site);
+                // Stoping the execution cause if the word is alredy found there's no need to keep searching
+                break;
+            }
         }
     }
 
@@ -537,5 +539,35 @@ LINKED_LIST* createKeyWordList(AVL *tree, char *keyWord){
     }
 
     // If it weren't possible to create the list return NULL
+    return NULL;
+}
+
+// Function that creates a linked list of suggested sites based on a list of sites based on a keyword
+LINKED_LIST *createSuggestedList(AVL *tree, LINKED_LIST *listSites){
+    if (tree != NULL &&listSites != NULL){
+        // Creating the list of suggestedSites
+        LINKED_LIST *listSuggested = createList();
+        
+        // Discovering the number of elements in the list
+        int amountNodes = listLength(listSites);
+
+        // Iterating through the list to find the suggested sites
+        for (int i = 0; i < amountNodes; i++){
+            // Discoverting the amount of keywords of a site
+            int amountWords = siteGetAmountKeyWords(listGetSite(listSites, i));
+            
+            // Getting the keywords from a site
+            char **keyWords = siteGetKeyWords(listGetSite(listSites, i));
+
+            // Iterating through the keywords of the site to add to the list of suggestedSites
+            for (int j = 0; j < amountWords; j++){
+                searchKeyWord(listSuggested, tree->root, keyWords[j]);
+            }
+        }
+
+        // Returning the list of suggested sites
+        return listSuggested;
+    }
+
     return NULL;
 }

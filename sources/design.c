@@ -164,6 +164,40 @@ void invalidRelevance(){
 
 void invalidOption(){
     printf("+------------------------------------------------+\n");
-    printf("+  O valor digitado não é uma opção válida       +\n");
+    printf("+  Essa não é uma opção válida                   +\n");
     printf("+------------------------------------------------+\n");
+}
+
+void howSearch(){
+    printf("+------------------------------------------------+\n");
+    printf("+            BUSCA POR PALAVRA CHAVE:            +\n");
+    printf("+------------------------------------------------+\n");
+    printf("  Digite a palavra chave: ");
+}
+
+void nullList(){
+    printf("+------------------------------------------------+\n");
+    printf("+  Não existe nenhum site com a palavra buscada  +\n");
+    printf("+------------------------------------------------+\n");
+}
+
+void stringExists(){
+    printf("+------------------------------------------------+\n");
+    printf("+  String já existente nos registos              +\n");
+    printf("+------------------------------------------------+\n");
+}
+
+void sites(){
+    printf("+------------------------------------------------+\n");
+    printf("+  Lista dos sites existentes                    +\n");
+}
+
+void foundSites(){
+    printf("+------------------------------------------------+\n");
+    printf("+  Lista dos sites encontrados dada a palavra    +\n");
+}
+
+void suggestedSites(){
+    printf("+------------------------------------------------+\n");
+    printf("+  Lista dos sites sugeridos (5 mais relevantes) +\n");
 }

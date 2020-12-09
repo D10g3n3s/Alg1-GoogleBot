@@ -16,8 +16,8 @@ struct _linkedList{
     int length;
 };
 
-//Funcation that creates a linked list
-LINKED_LIST* createList(){
+// Funcation that creates a linked list
+LINKED_LIST *createList(){
     LINKED_LIST *list = malloc(sizeof(LINKED_LIST));
 
     if (list != NULL){
@@ -29,12 +29,12 @@ LINKED_LIST* createList(){
     return list;
 }
 
-//Function that return the length of a list
+// Function that return the length of a list
 int listLength(LINKED_LIST *list){
     return list->length;
 }
 
-//Function that checks if list is empty
+// Function that checks if list is empty
 bool emptyList(LINKED_LIST *list){
     if (list != NULL && list->length == 0)
         return TRUE;
@@ -42,7 +42,7 @@ bool emptyList(LINKED_LIST *list){
     return FALSE;
 }
 
-//Function that inserts in a list in a ordenated way
+// Function that inserts in a list in a ordenated way
 bool insertList(LINKED_LIST *list, SITE *site){
     if (list == NULL || site == NULL)
         return FALSE;
@@ -54,7 +54,7 @@ bool insertList(LINKED_LIST *list, SITE *site){
     if (data == NULL)
         return FALSE;
 
-    //If list is empty begin from the start of the list
+    // If list is empty begin from the start of the list
     if (emptyList(list)){
         list->head = data;
         list->tail = data;
@@ -62,9 +62,9 @@ bool insertList(LINKED_LIST *list, SITE *site){
         return TRUE;
     }
 
-    //Searching for the right place to insert
+    // Searching for the right place to insert
     else {
-        //Checking if the incoming data comes in the start of the list
+        // Checking if the incoming data comes in the start of the list
         if (siteGetRevelance(data->site) > siteGetRevelance(list->head->site)){
             NODE *aux = list->head;
             list->head = data;
@@ -77,19 +77,19 @@ bool insertList(LINKED_LIST *list, SITE *site){
         NODE *prev = list->head;
         NODE *next = list->head->next;
 
-        //Searching for the right place
+        // Searching for the right place
         while (next != NULL && siteGetRevelance(data->site) <= siteGetRevelance(next->site)){
             prev = next;
             next = next->next;
         }
 
-        //If the data is inserted in the end of the list
+        // If the data is inserted in the end of the list
         if (next == NULL){
             prev->next = data;
             list->tail = data;
         }
 
-        //Inserting in the right place
+        // Inserting in the right place
         else {
             data->next = next;
             prev->next = data;
@@ -100,16 +100,14 @@ bool insertList(LINKED_LIST *list, SITE *site){
     return TRUE;
 }
 
-//Function that searchs for a site in the list based in a code
-SITE* searchList(LINKED_LIST *list, int code){
+// Function that searchs for a site in the list based in a code
+SITE *searchList(LINKED_LIST *list, char *name){
     if (list != NULL){
         NODE *data;
         data = list->head;
         while (data != NULL){
-            if (siteGetCode(data->site) == code)
+            if (strcmp(siteGetName(data->site), name) == 0)
                 return data->site;
-            if (siteGetCode(data->site) > code)
-                break;
             data = data->next;
         }
     }
@@ -117,7 +115,7 @@ SITE* searchList(LINKED_LIST *list, int code){
     return NULL;
 }
 
-//Function that removes from the list based in a code
+// Function that removes from the list based in a code
 bool removeSite(LINKED_LIST *list, int code){
     if (list != NULL){
         NODE *prev = NULL;
@@ -128,9 +126,9 @@ bool removeSite(LINKED_LIST *list, int code){
             next = next->next;
         }
 
-        //In case the data is found
+        // In case the data is found
         if (next != NULL){
-            //If the data is the init of the list
+            // If the data is the init of the list
             if (next == list->head){
                 list->head = next->next;
                 next->next = NULL;
@@ -141,7 +139,7 @@ bool removeSite(LINKED_LIST *list, int code){
                 next->next = NULL;
             }
 
-            //Checking if the removed item is the end of the list
+            // Checking if the removed item is the end of the list
             if (next == list->tail)
                 list->tail = prev;
 
@@ -155,7 +153,7 @@ bool removeSite(LINKED_LIST *list, int code){
     return FALSE;
 }
 
-//Function that print the entire list
+// Function that print the entire list
 void printList(LINKED_LIST *list){
     NODE *data;
 
@@ -163,17 +161,33 @@ void printList(LINKED_LIST *list){
         data = list->head;
 
         while (data != NULL){
-            printSite(data->site);
+            printRelatedSite(data->site);
             data = data->next;
         }
     }
-    else {
-        printf("Tá vazio poha\n");
-    }
-    printf("\n");
 }
 
-//Function that deletes a list
+// Function that print the 5 most relevant sites
+void printMostRelevant(LINKED_LIST *list){
+    NODE *data = list->head;
+
+    if (list != NULL){
+        if (list->length >= 5){
+            for (int i = 0; i < 5; i++){
+                printRelatedSite(data->site);
+                data = data->next;
+            }
+        }
+        else {
+            for (int i = 0; i < list->length; i++){
+                printRelatedSite(data->site);
+                data = data->next;
+            }
+        }
+    }
+}
+
+// Function that deletes a list
 bool deleteList(LINKED_LIST *list){
     if (list != NULL){
         NODE *data;
@@ -193,16 +207,26 @@ bool deleteList(LINKED_LIST *list){
         return FALSE;
 }
 
-//Function that checks if a code from given data alredy exists in the list
-bool checkExistence(LINKED_LIST *list, char *string){
-    //Discovering the code of given data
-    char *exists = myStrndump(string, 4);
-    int code = atoi(exists);
-    free(exists);
+// Function that searchs for a site based on the amount of nodes to iterate
+SITE *listGetSite(LINKED_LIST *list, int amountLoop){
+    if (list != NULL){
+        NODE *data = list->head;
+        for (int i = 0; i <= amountLoop; i++){
+            if (i == amountLoop)
+            return data->site;
 
-    //Trying to find the site in the list, if found code alredy existes
-    SITE* siteExists = NULL;
-    siteExists = searchList(list, code);
+            data = data->next;
+        }
+    }
+
+    return NULL;
+}
+
+// Function that checks if a code from given data alredy exists in the list
+bool checkExistence(LINKED_LIST *list, char *name){
+    // Trying to find the site in the list, if found code alredy existes
+    SITE *siteExists = NULL;
+    siteExists = searchList(list, name);
 
     if (siteExists == NULL)
         return FALSE;

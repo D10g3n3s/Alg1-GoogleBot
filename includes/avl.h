@@ -16,9 +16,10 @@
     int treeHeight(AVL *tree);
     bool deleteAVL(AVL *tree);
     bool insertAVL(AVL *tree, SITE *site);
-    SITE* searchTree(AVL *tree, int code);
+    SITE *searchTree(AVL *tree, int code);
     bool deleteNodeAVL(AVL *tree, int code);
     bool checkAVLExistence(AVL *tree, char *string);
-    LINKED_LIST* createKeyWordList(AVL *tree, char *string);
+    LINKED_LIST *createKeyWordList(AVL *tree, char *string);
+    LINKED_LIST *createSuggestedList(AVL *tree, LINKED_LIST *listSites);
 
 #endif

@@ -12,6 +12,7 @@
     SITE* createSite(char *string);
     bool deleteSite(SITE *site);
     void printSite(SITE *site);
+    void printRelatedSite(SITE *site);
     int siteGetCode(SITE *site);
     char* siteGetName(SITE *site);
     int siteGetRevelance(SITE *site);

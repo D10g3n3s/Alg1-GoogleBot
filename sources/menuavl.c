@@ -184,16 +184,37 @@ void avlUpdateRel(AVL *tree){
 }
 
 void avlSiteList(AVL *tree){
+    howSearch();
+
     // Discovering the keyword to be searched
     char *keyWordToFound = readWord(stdin);
-    printf("Key Word to Found: %s\n", keyWordToFound);
 
     // Creating a linked list for the sites that has the keyword to be searched
     LINKED_LIST *listOfSites;
     listOfSites = createKeyWordList(tree, keyWordToFound);
-    printList(listOfSites);
-
     free(keyWordToFound);
+    
+    if (!emptyList(listOfSites)){
+        foundSites();
+        printList(listOfSites);
+
+        // Creating an AVL that has unique strings based on the list of the sites related to the keyword
+        // so then we can create the list of suggested sites
+        LINKED_LIST *listSuggestedSites;
+        listSuggestedSites = createSuggestedList(tree, listOfSites);
+
+        if (!emptyList(listSuggestedSites)){
+            suggestedSites();
+            printMostRelevant(listSuggestedSites);
+        }
+        else
+            nullList();
+
+        deleteList(listSuggestedSites);
+    }
+    else
+        nullList();
+
     deleteList(listOfSites);
 }
 
@@ -227,8 +248,10 @@ void menuAVL(AVL *tree){
         else if(operation == SEARCH_KEYWORD)
             avlSiteList(tree);
 
-        else if(operation == PRINT_TREE)
+        else if(operation == PRINT_TREE){
+            sites();
             printInOrder(tree);
+        }
 
         else if(operation == EXIT)
             isOver = TRUE;

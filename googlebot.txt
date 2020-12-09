@@ -47,7 +47,7 @@
 0420,Mc Donald's,420,https://www.mcdonalds.com.br/,comida,palhaço,lanche,cupom,sorvete,combo,promoção,drive through
 0421,Subway,205,https://www.subway.com/pt-br,comida,lanche,saudável,metro,promoção,monte você mesmo,lanche do dia
 0422,Burguer King,308,http://www.burgerking.com.br/,comida,lanche,grelhado,churrasco,refil,baldão,promoção,cupom,rei,drive through,coroa
-0423,Girrafas,418,http://www.burgerking.com.br/,comida,lanche,prato feito,animal,promoção,brasileiro
+0423,Giraffas,418,https://giraffas.com.br/,comida,lanche,prato feito,animal,promoção,brasileiro
 0424,Habbib's,592,https://www.habibs.com.br/,comida,lanche,pizza,esfira,árabe,gênio,promoção
 0425,Bob's,690,https://www.bobs.com.br/,comida,lanche,promoção,milk shake
 0012,Reddit,103,https://www.reddit.com/,comunidades,foruns,classificação,memes,rank,americo
