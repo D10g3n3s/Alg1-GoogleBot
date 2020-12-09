@@ -10,6 +10,7 @@ enum {
     NEW_KEYWORD,
     UPDATE_RELEVANCE,
     SEARCH_KEYWORD,
+    SUGGESTION,
     PRINT_TREE,
     EXIT
 };
@@ -197,9 +198,27 @@ void avlSiteList(AVL *tree){
     if (!emptyList(listOfSites)){
         foundSites();
         printList(listOfSites);
+    }
+    else
+        nullList();
 
-        // Creating an AVL that has unique strings based on the list of the sites related to the keyword
-        // so then we can create the list of suggested sites
+    deleteList(listOfSites);
+}
+
+void avlSiteSuggestion(AVL *tree){
+    howSearch();
+
+    // Discovering the keyword to be searched
+    char *keyWordToFound = readWord(stdin);
+
+    // Creating a linked list for the sites that has the keyword to be searched
+    LINKED_LIST *listOfSites;
+    listOfSites = createKeyWordList(tree, keyWordToFound);
+    free(keyWordToFound);
+    
+    // Creating an AVL that has unique strings based on the list of the sites related to the keyword
+    // so then we can create the list of suggested sites
+    if (!emptyList(listOfSites)){
         LINKED_LIST *listSuggestedSites;
         listSuggestedSites = createSuggestedList(tree, listOfSites);
 
@@ -247,6 +266,9 @@ void menuAVL(AVL *tree){
 
         else if(operation == SEARCH_KEYWORD)
             avlSiteList(tree);
+
+        else if(operation == SUGGESTION)
+            avlSiteSuggestion(tree);
 
         else if(operation == PRINT_TREE){
             sites();

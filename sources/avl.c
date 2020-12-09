@@ -533,6 +533,8 @@ LINKED_LIST* createKeyWordList(AVL *tree, char *keyWord){
     if (tree != NULL){
         LINKED_LIST *listOfSites = createList();
 
+        // Searching for the keyword in the sites and then adding the sites in the linked list if
+        // the keyword is in the keywords of the list
         searchKeyWord(listOfSites, tree->root, keyWord);
 
         return listOfSites;

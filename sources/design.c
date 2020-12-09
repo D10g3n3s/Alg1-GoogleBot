@@ -16,9 +16,10 @@ void printOpc(){
     printf("+ [2]: Remover site                              +\n");
     printf("+ [3]: Inserir Palavra-chave                     +\n");
     printf("+ [4]: Atualizar Relevância                      +\n");
-    printf("+ [5]: Buscar sites                              +\n");
-    printf("+ [6]: Imprimir lista                            +\n");
-    printf("+ [7]: Sair                                      +\n");
+    printf("+ [5]: Buscar por palavra chave                  +\n");
+    printf("+ [6]: Sugestão de sites                         +\n");
+    printf("+ [7]: Imprimir lista                            +\n");
+    printf("+ [8]: Sair                                      +\n");
     printf("+------------------------------------------------+\n");
     printf("  Digite sua opção: ");
 }

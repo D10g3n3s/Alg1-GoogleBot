@@ -6,10 +6,16 @@ Projeto para a matéria SCC0202 - Algoritmos e Estruturas de Dados 1
 - [Alexandre Lima Palles Rocha](https://github.com/Alexandre-Palles) - nUSP 11797038
 
 ## Compilador
-Foi utilizado o padrão C99 para o projeto, além do compilador GCC (Gnu C Compiler)
+Foi utilizado o padrão C99 para o projeto, além do compilador GCC (Gnu C Compiler).
 
 ## Estrutura Utilizada
-Foi utlizado uma lista ligada simples pois podemos pensar no código como um "banco de dados" onde são guardados informações sobre sites. Como não sabemos quantos sites podem haver esse estrutura faz com que seja possível um bom manejo desses dados, graças ao nós. Vale também lembrar que no nosso caso a inserção é feita de maneira ordenada a partir do código do site.
+Nosso programa se utiliza de duas estruturas de dados. Uma Árvore AVL e uma lista ligada.
+
+### Árvore AVL
+- a
+
+### Lista Ligada
+- a
 
 ## Complexidade da Estrutura
 - Inserção do site no começo da lista: O(1)
