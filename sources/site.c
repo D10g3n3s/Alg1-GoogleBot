@@ -174,7 +174,6 @@ int siteGetRevelance(SITE *site){
     if (site != NULL)
         return site->revelance;
     
-    printf("Não foi possível recuperar a relevância do site\n");
     return ERROR;
 }
 

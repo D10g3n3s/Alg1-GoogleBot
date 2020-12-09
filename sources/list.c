@@ -65,7 +65,7 @@ bool insertList(LINKED_LIST *list, SITE *site){
     //Searching for the right place to insert
     else {
         //Checking if the incoming data comes in the start of the list
-        if (siteGetCode(data->site) < siteGetCode(list->head->site)){
+        if (siteGetRevelance(data->site) > siteGetRevelance(list->head->site)){
             NODE *aux = list->head;
             list->head = data;
             list->head->next = aux;
@@ -78,7 +78,7 @@ bool insertList(LINKED_LIST *list, SITE *site){
         NODE *next = list->head->next;
 
         //Searching for the right place
-        while (next != NULL && siteGetCode(data->site) >= siteGetCode(next->site)){
+        while (next != NULL && siteGetRevelance(data->site) < siteGetRevelance(next->site)){
             prev = next;
             next = next->next;
         }
@@ -146,7 +146,7 @@ bool removeSite(LINKED_LIST *list, int code){
                 list->tail = prev;
 
             list->length--;
-            deleteSite(next->site);
+            next->site = NULL;
             free(next);
             return TRUE;
         }
@@ -178,7 +178,7 @@ bool deleteList(LINKED_LIST *list){
         while (list->head != NULL){
             data = list->head;
             list->head = list->head->next;
-            deleteSite(data->site);
+            data->site = NULL;
             free(data);
         }
         free(list);

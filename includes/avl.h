@@ -2,6 +2,7 @@
     #define AVL_H
 
     #include <site.h>
+    #include <list.h>
     #include <utils.h>
 
     typedef struct _node NODE;
@@ -18,5 +19,6 @@
     SITE* searchTree(AVL *tree, int code);
     bool deleteNodeAVL(AVL *tree, int code);
     bool checkAVLExistence(AVL *tree, char *string);
+    LINKED_LIST* createKeyWordList(AVL *tree, char *string);
 
 #endif

@@ -9,6 +9,7 @@ enum {
     REMOVE_DATA,
     NEW_KEYWORD,
     UPDATE_RELEVANCE,
+    SEARCH_KEYWORD,
     PRINT_TREE,
     EXIT
 };
@@ -199,7 +200,7 @@ void menuAVL(AVL *tree){
 
         if(operation == INSERT_DATA)
             avlMenuInsert(tree);
-                                
+
         else if(operation == REMOVE_DATA)
             avlRemoveData(tree);
 
@@ -209,8 +210,11 @@ void menuAVL(AVL *tree){
         else if(operation == UPDATE_RELEVANCE)
             avlUpdateRel(tree);
 
+        else if(operation == SEARCH_KEYWORD)
+            avlSiteList(tree);
+
         else if(operation == PRINT_TREE)
-            printInfixOrder(tree);
+            printInOrder(tree);
 
         else if(operation == EXIT)
             isOver = TRUE;

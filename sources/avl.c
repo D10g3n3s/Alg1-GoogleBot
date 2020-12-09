@@ -499,3 +499,43 @@ bool deleteAVL(AVL *tree){
 
     return FALSE;
 }
+
+// Auxiliar function to create a list of the sites that contains the searched keyword
+void searchKeyWord(LINKED_LIST *list, NODE *node, char *keyWord){
+    if (node == NULL)
+        return;
+
+    // Discovering the number of keyword a site has
+    int amount = siteGetAmountKeyWords(node->site);
+
+    // Getting the keywordList from a site
+    char **wordList = siteGetKeyWords(node->site);
+
+    // Trying to find the keyword in the keyword list of the site
+    for (int i = 0; i < amount; i++){
+        // If the keyword in found in the site keyword list than adding the node to the list
+        if (strcmp(keyWord, wordList[i]) == 0){
+            insertList(list, node->site);
+            // Stoping the execution cause if the word is alredy found there's no need to keep searching
+            break;
+        }
+    }
+
+    // Going to the left subtree after the right subtree trying to find the keyword into the nodes
+    searchKeyWord(list, node->left, keyWord);
+    searchKeyWord(list, node->right, keyWord);
+}
+
+// Function that creates a linked list with every site that has the searched keyword
+LINKED_LIST* createKeyWordList(AVL *tree, char *keyWord){
+    if (tree != NULL){
+        LINKED_LIST *listOfSites = createList();
+
+        searchKeyWord(listOfSites, tree->root, keyWord);
+
+        return listOfSites;
+    }
+
+    // If it weren't possible to create the list return NULL
+    return NULL;
+}
