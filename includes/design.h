@@ -23,5 +23,6 @@
     void relevanceChanged();
     void equalRelevance();
     void invalidRelevance();
+    void invalidOption();
 
 #endif

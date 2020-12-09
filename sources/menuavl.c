@@ -183,6 +183,20 @@ void avlUpdateRel(AVL *tree){
         nonExiste();
 }
 
+void avlSiteList(AVL *tree){
+    // Discovering the keyword to be searched
+    char *keyWordToFound = readWord(stdin);
+    printf("Key Word to Found: %s\n", keyWordToFound);
+
+    // Creating a linked list for the sites that has the keyword to be searched
+    LINKED_LIST *listOfSites;
+    listOfSites = createKeyWordList(tree, keyWordToFound);
+    printList(listOfSites);
+
+    free(keyWordToFound);
+    deleteList(listOfSites);
+}
+
 void menuAVL(AVL *tree){
     bool isOver = FALSE;
     char *opc = NULL;
@@ -220,7 +234,7 @@ void menuAVL(AVL *tree){
             isOver = TRUE;
         
         else
-            alredyExists();
+            invalidOption();
 
     } while(!isOver);
 }

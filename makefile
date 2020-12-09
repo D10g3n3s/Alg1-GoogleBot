@@ -6,7 +6,7 @@ BINARY = ./main
 PROG = sources/main.c
 FLAGS = -Wall -Werror -g -lm -std=c99
 PROG_NAME = Googlebot2.0
-VFLAGS = --leak-check=full --track-origins=yes --show-leak-kinds=all
+VFLAGS = --leak-check=full --track-origins=yes --show-leak-kinds=all -s
 
 all:
 	@$(CC) -o $(BINARY) $(PROG) $(SOURCES) -I $(INCLUDES) $(FLAGS)

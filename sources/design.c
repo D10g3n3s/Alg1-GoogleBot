@@ -161,3 +161,9 @@ void invalidRelevance(){
     printf("+  O valor digitado não é uma relevancia válida  +\n");
     printf("+------------------------------------------------+\n");
 }
+
+void invalidOption(){
+    printf("+------------------------------------------------+\n");
+    printf("+  O valor digitado não é uma opção válida       +\n");
+    printf("+------------------------------------------------+\n");
+}

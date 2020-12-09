@@ -78,7 +78,7 @@ bool insertList(LINKED_LIST *list, SITE *site){
         NODE *next = list->head->next;
 
         //Searching for the right place
-        while (next != NULL && siteGetRevelance(data->site) < siteGetRevelance(next->site)){
+        while (next != NULL && siteGetRevelance(data->site) <= siteGetRevelance(next->site)){
             prev = next;
             next = next->next;
         }
@@ -166,6 +166,9 @@ void printList(LINKED_LIST *list){
             printSite(data->site);
             data = data->next;
         }
+    }
+    else {
+        printf("Tá vazio poha\n");
     }
     printf("\n");
 }
