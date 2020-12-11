@@ -100,11 +100,12 @@ bool insertList(LINKED_LIST *list, SITE *site){
     return TRUE;
 }
 
-// Function that searchs for a site in the list based in a code
+// Function that searchs for a site in the list based in a site name
 SITE *searchList(LINKED_LIST *list, char *name){
     if (list != NULL){
         NODE *data;
         data = list->head;
+        // We need to search for every site in the list, because they're ordenated by relevance not by name
         while (data != NULL){
             if (strcmp(siteGetName(data->site), name) == 0)
                 return data->site;
@@ -213,7 +214,7 @@ SITE *listGetSite(LINKED_LIST *list, int amountLoop){
         NODE *data = list->head;
         for (int i = 0; i <= amountLoop; i++){
             if (i == amountLoop)
-            return data->site;
+                return data->site;
 
             data = data->next;
         }
@@ -222,9 +223,9 @@ SITE *listGetSite(LINKED_LIST *list, int amountLoop){
     return NULL;
 }
 
-// Function that checks if a code from given data alredy exists in the list
+// Function that checks if the name of a site from given data alredy exists in the list
 bool checkExistence(LINKED_LIST *list, char *name){
-    // Trying to find the site in the list, if found code alredy existes
+    // Trying to find the site in the list, if found the site alredy exists
     SITE *siteExists = NULL;
     siteExists = searchList(list, name);
 
