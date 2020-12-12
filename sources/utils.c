@@ -2,23 +2,22 @@
 #include <stdlib.h>
 #include <string.h>
 
-//Função que le uma string de tamanho indefinido e alloca o tamanho exato na memória heap
+// Function that reads a string of undefined size and allocates the exact size of heap memory 
 char* readLine(FILE* input){
     char *str;
 
-    //Fazendo a alocação inicial
-    str = (char*) malloc(32 * sizeof(char)); 
+    str = (char*) malloc (32 * sizeof(char)); //Doing inicial allocation
 
     int pos = 0, tamanho = 32;
     
     do {
-        //Reallocando o tamanho da memória heap in caso da palavra exceder o tamanho limite
+        // Reallocating the heap memory in case the word exceds the limit
         if (pos == tamanho) {
-            str = realloc(str, 2 * tamanho);
+            str = realloc (str, 2 * tamanho);
             tamanho *= 2;
         }
 
-        //Lendo os caracteres
+        // Getting the chars
         str[pos] = (char) fgetc(input);
         if (str[pos] == '\r') pos--;
         pos++;
@@ -31,23 +30,23 @@ char* readLine(FILE* input){
     return str;
 }
 
-//Função que le somente uma palavra
+// Function that reads only one word
 char* readWord(FILE* input){
     char *str;
 
-    //Fazendo a alocação inicial
+    // Doing the inicial allocation
     str = (char*) malloc(32 * sizeof(char)); 
 
     int pos = 0, tamanho = 32;
     
     do {
-        //Reallocando o tamanho da memória heap in caso da palavra exceder o tamanho limite
+        // Reallocating the size of the heap memory in case the words exceds the max limit
         if (pos == tamanho) {
             str = realloc(str, 2 * tamanho);
             tamanho *= 2;
         }
 
-        //Lendo os caracteres
+        // Reading the chars
         str[pos] = (char) fgetc(input);
         pos++;
         if (str[pos-1] == '\r' ) pos--;
