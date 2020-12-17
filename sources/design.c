@@ -133,7 +133,7 @@ void newKeyFail(){
 
 void maxWords(){
     printf("+------------------------------------------------+\n");
-    printf("+  Não foi possível inserir máx de 10 palavras   +\n");
+    printf("+  Não foi possível inserir. Máx de 10 palavras  +\n");
     printf("+  chave atingido                                +\n");
     printf("+------------------------------------------------+\n");
 }
