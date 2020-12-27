@@ -51,7 +51,7 @@ O programa inicia carregando uma lista de sites predefinida e mostra um menu com
     - Essa função faz uma busca por todos os elementos da árvore caso as palavras chave do site atual contenha a palavra chave buscada, adicionaremos o ponteiro do site a lista dos sites. Assim faremos a busca em toda a árvore e n funções de inserção na lista, sendo n o número de sites que contenham a palavra chave buscada. 
 - Sugestão de Site:
     - O usuário digita uma palavra, após criarmos uma lista dos sites que existem a palavra chave, iteraremos pela lista e olharemos todas as palavras chaves existentes em todos os sites para criarmos uma lista de sugestão de sites, depois printaremos os 5 sites mais relevantes para o usuário.
-    - Essa função terá uma complexidade de O(n*k), onde n é o número de elementos da lista e k será o número de palavras chave únicas na lista de site criada pela função de busca por palavras chave.
+    - Essa função terá uma complexidade de O(n²), onde n é o número de elementos da lista e k será o número de palavras chave únicas na lista de site criada pela função de busca por palavras chave.
 - Imprimir Lista:
     - O programa printa todos os sites da lista. Essa função itera por toda a lista printando cada nó, mostrando todos os sites em ordem crescente dos códigos.
 - Sair:
